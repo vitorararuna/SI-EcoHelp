@@ -1,78 +1,44 @@
 import React from "react";
-import { KeyboardAvoidingView, View, Image, TouchableOpacity, Text, StyleSheet } from "react-native";
-import { ScrollView, TextInput } from "react-native-gesture-handler";
-import logo from '../../assets/logo3.png'
+import { KeyboardAvoidingView, View, ImageBackground, Image, Text, StyleSheet, } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+// import { ScrollView, TextInput } from "react-native-gesture-handler";
+import fundo from '../../assets/fundo.jpeg'
+import { Eco, EcoHelp, Help, SignContent, SignSpan, SignText, Userinput, Passinput, JoinText, SignUpText, Confirminput } from './styles'
 
-export default function SignUp({ navigation }) {
+export default function Signup({ navigation }) {
     return (
-        <KeyboardAvoidingView style={styles.background}>
-            <View style={styles.containerLogo}>
-                <Image source={logo} />
-            </View>
+        <KeyboardAvoidingView>
+            <ImageBackground source={fundo} resizeMode="cover" style={styles.image}>
+                <EcoHelp>
+                    <Eco>ECO</Eco>
+                    <Help>HELP</Help>
 
-            <View style={styles.container}>
-                <TextInput style={styles.input} placeholder="Email" autoCorrect={false} onChangeText={() => { }} />
-                <TextInput style={styles.input} placeholder="Senha" autoCorrect={false} onChangeText={() => { }} />
-                <TextInput style={styles.input} placeholder="Confirmar Senha" autoCorrect={false} onChangeText={() => { }} />
+                </EcoHelp>
 
-                <TouchableOpacity style={styles.btnSubmit}>
-                    <Text style={styles.btnSubmitText}>Criar Conta</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.btnRegister}>
-                    <Text style={styles.btnRegisterText} onPress={() => navigation.navigate('SignIn')}>Já tenho uma conta</Text>
-                </TouchableOpacity>
+                <SignContent>
+                    <SignText>SignUp</SignText>
+                    <SignSpan>Escolha suas credenciais abaixo</SignSpan>
+                    <Userinput />
+                    <Passinput />
+                    <Confirminput />
+                    <JoinText>ENTRAR</JoinText>
+                    <TouchableOpacity>
+                        <SignUpText onPress={() => navigation.navigate('SignIn')}>Já tenho uma conta</SignUpText>
+                    </TouchableOpacity>
+                </SignContent>
 
-            </View>
+
+            </ImageBackground>
         </KeyboardAvoidingView>
     )
 }
 
 const styles = StyleSheet.create({
-    background: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#fff5"
-    },
-    containerLogo: {
+    image: {
         flex: 1,
         justifyContent: "center",
-        fontSize: 1,
+        // alignItems: "center",
+        width: 450,
+        height: 812,
     },
-    container: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        width: '90%',
-        paddingBottom: 90
-    },
-    input: {
-        backgroundColor: "#fff",
-        borderColor: "#6bb42d",
-        borderWidth: 1.3,
-        width: '90%',
-        marginBottom: 15,
-        color: "#222",
-        fontSize: 17,
-        borderRadius: 7,
-        padding: 10
-    },
-    btnSubmit: {
-        backgroundColor: "#6bb42d",
-        width: "90%",
-        height: 45,
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: 7
-    },
-    btnSubmitText: {
-        color: "#fff",
-        fontSize: 18
-    },
-    btnRegister: {
-        marginTop: 10
-    },
-    btnRegisterText: {
-        color: "#6bb42d"
-    }
 });
