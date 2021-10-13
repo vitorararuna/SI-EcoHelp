@@ -6,12 +6,13 @@ import { placeholder } from '@babel/types';
 export const Content = styled.View`
     /* position: absolute; */
     width: 400px;
-    height: 300px;
+    height: 130px;
     align-self: center;
     background: #FCFCFC;
     border-radius: 5px;
     margin-top: 12px;
     padding:10px;
+    border: 2px #2EAE01 solid;
 `;
 
 export const UserContent = styled.View`
@@ -27,21 +28,21 @@ export const UserInfos = styled.View`
 export const IconsContent = styled.View`
     flex-direction: row;
     margin-bottom: 5px;
-    left: 192px;
+    left: 180px;
 `;
 
 export const Name = styled.Text`
     font-weight: bold;
-    font-size: 15px;
+    font-size: 17px;
     line-height: 16px;
     color: #24292E;
     margin-left: 9px;
     font-weight: bold;
 `;
 
-export const User = styled.Text`
+export const Tipo = styled.Text`
     font-weight: bold;
-    font-size: 11px;
+    font-size: 12px;
     line-height: 10px;
     color: #24292E;
     margin-left: 9px;
@@ -49,15 +50,6 @@ export const User = styled.Text`
     font-weight: bold;
 `;
 
-
-
-export const Photo = styled.Image`
-    width: 50px;
-    height: 50px;
-    padding: 5px;
-    border-radius: 50px;
-    border: 3px #069B49 solid;
-`;
 
 export const PostContent = styled.View`
     margin-top: 25px;
@@ -82,27 +74,14 @@ export const Spam = styled.Text`
     font-weight: normal;
     font-size: 13px;
     line-height: 16px;
-    color: #24292E;
+    color: #2173ea;
 `;
 
-export const InfosPostContent = styled.View`
-    flex-direction: row;
-    align-content: space-around;
-    margin-top: 38px;
+export const IconContent = styled.View`
+  background-color: #8CD500;
+  align-items: center;
+  align-content: center;
+  border-radius: 50px;
+  width: 36px;
+  height: 34px;
 `;
-export const Text_ = styled.Text`
-    align-items: center;
-    margin: 8px;
-`;
-
-export const Filter_ = styled.View`
-    align-items: center;
-    padding: 3px;
-    border: 3px #FFF2E2 solid;
-    border-radius:15px;
-    align-self: center;
-    background-color: #FFF2E2;
-    left: 170px;
-`;
-
-

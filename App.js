@@ -10,6 +10,9 @@ import Add2 from './src/pages/Add2';
 import Add3 from './src/pages/Add3';
 import User from './src/pages/User';
 import Comunidade from './src/pages/Comunidade';
+import Locais from './src/pages/Locais';
+import NewPublish from './src/pages/newPublish';
+import NewLocal from './src/pages/NewLocal';
 // import Contato from './src/pages/Contato'
 
 
@@ -27,6 +30,10 @@ export default function EcoHelp() {
                 <Drawer.Screen name="Add3" component={Add3} />
                 <Drawer.Screen name="Meu Perfil" component={User} />
                 <Drawer.Screen name="Comunidade" component={Comunidade} />
+                <Drawer.Screen name="Locais" component={Locais} />
+                <Drawer.Screen name="New Publish" component={NewPublish} />
+                <Drawer.Screen name="New Local" component={NewLocal} />
+
                 {/* <Drawer.Screen name="Contato" component={Contato} /> */}
             </Drawer.Navigator>
         </NavigationContainer>

@@ -11,7 +11,8 @@ export const Content = styled.View`
     background: #FCFCFC;
     border-radius: 5px;
     margin-top: 12px;
-    padding:10px;
+    padding:5px;
+    border: 2px #2EAE01 solid;
 `;
 
 export const UserContent = styled.View`

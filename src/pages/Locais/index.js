@@ -1,17 +1,17 @@
 import React from "react";
 import { KeyboardAvoidingView, View, ImageBackground, Image, TouchableOpacity, Text, StyleSheet, } from "react-native";
 import fundo from '../../assets/fundo.jpeg'
-import { SearchContent, Search } from './styles'
+import { SearchContent, Search } from './styles';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Icon from "react-native-vector-icons/AntDesign";
 import Icon2 from "react-native-vector-icons/Ionicons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Publish from "../Publish_";
-
+import Locs_ from "../../pages/Locs_";
 
 const Tab = createMaterialTopTabNavigator();
 
-export default function Comunidade({ navigation }) {
+export default function Locais({ navigation }) {
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <ImageBackground source={fundo} resizeMode="cover" style={styles.image}>
@@ -21,7 +21,7 @@ export default function Comunidade({ navigation }) {
                     <Icon2 name="options" size={31} color="white" style={styles.icon} />
                 </SearchContent>
             </ImageBackground>
-            <Publish />
+            <Locs_ />
         </SafeAreaView>
     )
 }
