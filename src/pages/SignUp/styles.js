@@ -25,14 +25,12 @@ export const Help = styled.Text`
 `;
 
 export const SignContent = styled.View`
-    position: absolute;
     width: 339px;
     height: 400px;
-    left: 36px;
-    top: 254px;
-
+    align-self: center;
     background: #FCFCFC;
     border-radius: 5px;
+    margin-top: 160px;
 `;
 
 export const SignText = styled.Text`
@@ -60,8 +58,8 @@ export const JoinText = styled.Text`
 
 export const SignUpText = styled.Text`
     align-self: center;
-    margin-top: 12px;
-    margin-left: 9px;
+    /* margin-top: 12px;
+    margin-left: 9px; */
 
 `;
 
@@ -93,6 +91,7 @@ export const Userinput = styled(TextInput).attrs({
 export const Passinput = styled(TextInput).attrs({
     placeholder: "Senha",
     autoCorrect: false,
+    secureTextEntry: true,
 })`
     margin-top: 25px;
     align-self: center;
@@ -105,6 +104,7 @@ export const Passinput = styled(TextInput).attrs({
 export const  Confirminput = styled(TextInput).attrs({
     placeholder: "Confirmar senha Senha",
     autoCorrect: false,
+    secureTextEntry: true,
 })`
     margin-top: 25px;
     align-self: center;

@@ -1,12 +1,16 @@
 import React from "react";
 import { KeyboardAvoidingView, View, ImageBackground, Image, TouchableOpacity, Text, StyleSheet, } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 // import { ScrollView, TextInput } from "react-native-gesture-handler";
 import fundo from '../../assets/fundo.jpeg'
 import { Eco, EcoHelp, Help, SignContent, SignSpan, SignText, Userinput, Passinput, JoinText, SignUpText } from './styles'
 
 export default function SignIn({ navigation }) {
   return (
-    <KeyboardAvoidingView>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "android" ? "padding" : null}
+    >
       <ImageBackground source={fundo} resizeMode="cover" style={styles.image}>
         <EcoHelp>
           <Eco>ECO</Eco>
@@ -19,28 +23,16 @@ export default function SignIn({ navigation }) {
           <SignSpan>Entre com suas credenciais abaixo</SignSpan>
           <Userinput />
           <Passinput />
-          <JoinText>ENTRAR</JoinText>
-          <TouchableOpacity>
-            <SignUpText onPress={() => navigation.navigate('SignUp')}>Criar Conta Gratuita</SignUpText>
+          <TouchableOpacity onPress={() => navigation.navigate('Dashboard')}>
+            <JoinText>ENTRAR</JoinText>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+            <SignUpText>Criar Conta Gratuita</SignUpText>
           </TouchableOpacity>
         </SignContent>
 
-
-
-        {/* <View style={styles.container}>
-        <TextInput style={styles.input} placeholder="Email" autoCorrect={false} onChangeText={() => { }} />
-        <TextInput style={styles.input} placeholder="Senha" autoCorrect={false} onChangeText={() => { }} />
-
-        <TouchableOpacity style={styles.btnSubmit}>
-          <Text style={styles.btnSubmitText}>Acessar</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.btnRegister}>
-          <Text style={styles.btnRegisterText} onPress={() => navigation.navigate('SignUp')}>Criar Conta Gratuita</Text>
-        </TouchableOpacity>
-
-      </View> */}
       </ImageBackground>
-    </KeyboardAvoidingView>
+    </KeyboardAvoidingView >
   )
 }
 

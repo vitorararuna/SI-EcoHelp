@@ -3,30 +3,29 @@ import { KeyboardAvoidingView, View, ImageBackground, Image, TouchableOpacity, T
 import fundo from '../../assets/fundo.jpeg'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Content, Title, Descricao, Publicar, Infos, Name, Type, End, Desc, Link, InputName, InputType, InputEnd, InputDesc, InputLink } from "./styles";
+import { Content, Title, InputTitle, Type, TypeOptions, Dica, Discussao, Noticia, Pergunta, Descricao, IputDescricao, Publicar, Voltar } from "./styles";
 import Icon from 'react-native-vector-icons/Ionicons'
 
 const Tab = createMaterialTopTabNavigator();
 
-export default function NewLocal({ navigation }) {
+export default function NovaPublicacao({ navigation }) {
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <Icon name="ios-chevron-back-circle-sharp" size={50} style={styles.icon} color="#2EAE01" />
-            <Infos>Informações sobre o local</Infos>
+            <TouchableOpacity onPress={() => navigation.navigate('Nova Postagem')}>
+                <Icon name="ios-chevron-back-circle-sharp" size={50} style={styles.icon} color="#2EAE01" />
+            </TouchableOpacity>
             <Content>
-                <Title>BÁSICO</Title>
-                {/* <InputTitle /> */}
-                <Name>Nome do Local</Name>
-                <InputName />
-                <Type>Tipo de serviço ou produto ofertado</Type>
-                <InputType />
-                <End>Endereço</End>
-                <InputEnd />
+                <Title>TÍTULO</Title>
+                <InputTitle />
+                <Type>TIPO DE PUBLICAÇÃO</Type>
+                <TypeOptions>
+                    <Dica>dica</Dica>
+                    <Discussao>discussão</Discussao>
+                    <Noticia>notícia</Noticia>
+                    <Pergunta>pergunta</Pergunta>
+                </TypeOptions>
                 <Descricao>DESCRIÇÃO</Descricao>
-                <Desc>Descreva o local</Desc>
-                <InputDesc />
-                <Link>Link para encontrar o local</Link>
-                <InputLink />
+                <IputDescricao />
                 <Publicar><Text style={styles.text}>PUBLICAR</Text></Publicar>
             </Content>
         </SafeAreaView>

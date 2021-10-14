@@ -4,7 +4,9 @@ import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { block } from "react-native-reanimated";
 import add1 from '../../assets/add1.png'
 
-export default function Add1({ navigation }) {
+
+
+export default function NovaPostagem({ navigation }) {
     return (
         <KeyboardAvoidingView style={styles.background}>
             <Text style={styles.text1}>ESCOLHA UMA OPÇÃO</Text>
@@ -14,8 +16,12 @@ export default function Add1({ navigation }) {
             </View>
 
             <View style={styles.view1}>
-                <Text style={styles.text2} >ADICIONAR LOCAL</Text>
-                <Text style={styles.text2} >FAZER NOVA PUBLICAÇÃO</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Novo Local0')}>
+                    <Text style={styles.text2} >ADICIONAR LOCAL</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Nova Publicacao')}>
+                    <Text style={styles.text2} >FAZER NOVA PUBLICAÇÃO</Text>
+                </TouchableOpacity>
             </View>
 
 
@@ -41,7 +47,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
         marginBottom: 17,
-        bottom:80
+        bottom: 80
     },
     text2: {
         padding: 20,
@@ -55,8 +61,8 @@ const styles = StyleSheet.create({
         fontSize: 15
     },
     containerLogo: {
-      justifyContent: "center",
-      padding: 4,
-      bottom: 150
+        justifyContent: "center",
+        padding: 4,
+        bottom: 150
     },
 });

@@ -24,14 +24,12 @@ export const Help = styled.Text`
 `;
 
 export const SignContent = styled.View`
-    position: absolute;
     width: 339px;
     height: 330px;
-    left: 36px;
-    top: 254px;
-
+    align-self: center;
     background: #FCFCFC;
     border-radius: 5px;
+    margin-top: 180px;
 `;
 
 export const SignText = styled.Text`
@@ -92,6 +90,7 @@ export const Userinput = styled(TextInput).attrs({
 export const Passinput = styled(TextInput).attrs({
     placeholder: "Senha",
     autoCorrect: false,
+    secureTextEntry: true,
 })`
     margin-top: 25px;
     align-self: center;

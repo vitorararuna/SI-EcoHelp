@@ -5,9 +5,11 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import fundo from '../../assets/fundo.jpeg'
 import { Eco, EcoHelp, Help, SignContent, SignSpan, SignText, Userinput, Passinput, JoinText, SignUpText, Confirminput } from './styles'
 
-export default function Signup({ navigation }) {
+export default function SignUp({ navigation }) {
     return (
-        <KeyboardAvoidingView>
+        <KeyboardAvoidingView
+            style={{ flex: 1 }}
+        >
             <ImageBackground source={fundo} resizeMode="cover" style={styles.image}>
                 <EcoHelp>
                     <Eco>ECO</Eco>
@@ -21,13 +23,13 @@ export default function Signup({ navigation }) {
                     <Userinput />
                     <Passinput />
                     <Confirminput />
-                    <JoinText>ENTRAR</JoinText>
-                    <TouchableOpacity>
-                        <SignUpText onPress={() => navigation.navigate('SignIn')}>Já tenho uma conta</SignUpText>
+                    <TouchableOpacity onPress={() => navigation.navigate('Dashboard')}>
+                        <JoinText>ENTRAR</JoinText>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
+                        <SignUpText >Já tenho uma conta</SignUpText>
                     </TouchableOpacity>
                 </SignContent>
-
-
             </ImageBackground>
         </KeyboardAvoidingView>
     )
