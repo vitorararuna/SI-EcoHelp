@@ -2,7 +2,8 @@ import React from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createAppContainer, createSwitchNavigator } from "react-navigation";
+import { createAppContainer } from "react-navigation";
+
 
 import SignIn from './src/pages/SignIn'
 import SignUp from './src/pages/SignUp'
@@ -19,18 +20,16 @@ const Drawer = createDrawerNavigator();
 
 const Dashboard = () => {
     return (
-        <NavigationContainer>
-            <Drawer.Navigator initialRouteName="Meu Perfil">
-                <Drawer.Screen name="Meu Perfil" component={User} />
-                <Drawer.Screen name="Nova Postagem" component={NovaPostagem} />
-                <Drawer.Screen name="Comunidade" component={Comunidade} />
-                <Drawer.Screen name="Locais" component={Locais} />
-            </Drawer.Navigator>
-        </NavigationContainer>
+        <Drawer.Navigator initialRouteName="Meu Perfil">
+            <Drawer.Screen name="Meu Perfil" component={User} />
+            <Drawer.Screen name="Nova Postagem" component={NovaPostagem} />
+            <Drawer.Screen name="Comunidade" component={Comunidade} />
+            <Drawer.Screen name="Locais" component={Locais} />
+        </Drawer.Navigator>
     )
 }
 
-const Initial = () => {
+const Initial = isSigned => {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="SignIn">
@@ -45,17 +44,12 @@ const Initial = () => {
     )
 }
 
-export default (isSigned = false) =>
-    createAppContainer(
-        createSwitchNavigator(
-            {
-                Sign: Initial,
-                App: Dashboard,
-            },
-            {
-                initialRouteName: isSigned ? 'App' : 'Sign',
-            }
-        )
-    );
+// export default (isSigned = false) =>
+//     createAppContainer(
+//         {
+//             Sign: Initial(isSigned),
+//         },
+//     );
 
 
+export default Initial;
