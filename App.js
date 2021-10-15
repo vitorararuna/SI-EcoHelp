@@ -12,7 +12,7 @@ export default function App() {
   return (
     <>
       <StatusBar backgroundColor="#000" />
-      <Initial />
+      <Initial isSigned={true} />
     </>
   );
 }
