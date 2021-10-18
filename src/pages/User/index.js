@@ -15,32 +15,36 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Tab = createMaterialTopTabNavigator();
 
-const user_infos = {
-    nome: 'Vitor Araruna',
-    user: '@vitorararuna',
-    foto: vitin
-}
+// const user_infos = {
+//     nome: 'Vitor Araruna',
+//     user: '@vitorararuna',
+//     foto: vitin
+// }
 
 export default function User({ navigation }) {
 
+    const _user_ = useSelector(state => state.user);
     const dispatch = useDispatch()
     const [userInfos, setUserIfos] = useState({})
+    const [userPublishes, setUserPublishes] = ([]);
 
     async function loadUserInfos() {
-        // const response = await api.get('user');
-        // setUserIfos(response.data);
-        setUserIfos(user_infos)
+        _user_infos_ = {
+            nome: _user_.name,
+            username: _user_.username,
+            foto: vitin
+        }
+        await setUserIfos(_user_infos_)
     }
 
     async function _signout_() {
-        // const response = await api.get('user');
-        // setUserIfos(response.data);
         dispatch(signout())
         navigation.navigate('SignIn')
     }
 
     useEffect(() => {
         loadUserInfos()
+        // loadPublishesUser()
     }, [])
 
     return (
@@ -48,7 +52,7 @@ export default function User({ navigation }) {
             <ImageBackground source={fundo} resizeMode="cover" style={styles.image}>
                 <Photo source={userInfos.foto} />
                 <UserName>{userInfos.nome} </UserName>
-                <UserLogin>{userInfos.user}</UserLogin>
+                <UserLogin>{`@${userInfos.username}`}</UserLogin>
                 <TouchableOpacity onPress={() => _signout_()}>
                     <Icon name="logout" size={30} style={styles.icon} />
                 </TouchableOpacity>
@@ -66,11 +70,6 @@ export default function User({ navigation }) {
                     name="Publicacoes"
                     component={Publish}
                     options={{ tabBarLabel: 'Publicacoes' }}
-                />
-                <Tab.Screen
-                    name="Salvos"
-                    component={Saves}
-                    options={{ tabBarLabel: 'Salvos' }}
                 />
             </Tab.Navigator>
         </View>

@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { KeyboardAvoidingView, View, ImageBackground, Image, TouchableOpacity, Text, StyleSheet } from "react-native";
-import fundo from '../../assets/fundo.jpeg'
+import { KeyboardAvoidingView, View, ImageBackground, Image, TouchableOpacity, Text, StyleSheet, Alert } from "react-native";
+import api from "../../services/api";
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Content, Title, InputTitle, Type, TypeOptions, Dica, Discussao, Noticia, Pergunta, Descricao, IputDescricao, Publicar, Voltar } from "./styles";
 import Icon from 'react-native-vector-icons/Ionicons'
+import { useSelector } from "react-redux";
 
 const Tab = createMaterialTopTabNavigator();
 
 export default function NovaPublicacao({ navigation }) {
+
+    const _user_ = useSelector(state => state.user);
+
 
     const [title, setTitle] = useState("")
     const [_type_, setType] = useState("")
@@ -22,36 +26,54 @@ export default function NovaPublicacao({ navigation }) {
     function setType_(type) {
         if (type == "dica") {
             setDica(!dica)
-            setType("dica")
+            setType("hint")
             if (disc == true) { setDisc(false) }
             if (noticia == true) { setNoticia(false) }
             if (perg == true) { setPerg(false) }
         }
         if (type == "disc") {
             setDisc(!disc)
-            setType("discussao")
+            setType("discussion")
             if (dica == true) { setDica(false) }
             if (noticia == true) { setNoticia(false) }
             if (perg == true) { setPerg(false) }
         }
         if (type == "noticia") {
             setNoticia(!noticia)
-            setType("noticia")
+            setType("notícia")
             if (disc == true) { setDisc(false) }
             if (dica == true) { setDica(false) }
             if (perg == true) { setPerg(false) }
         }
         if (type == "perg") {
             setPerg(!perg)
-            setType("pergunta")
+            setType("question")
             if (disc == true) { setDisc(false) }
             if (noticia == true) { setNoticia(false) }
             if (dica == true) { setDica(false) }
         }
     }
 
-    function publicar(){
-        console.log(title, _type_, desc)
+    async function publicar() {
+        await api.post('publication/', {
+            title: title,
+            body: desc,
+            type: _type_,
+            user: _user_.user_id,
+        })
+            .then((response) => {
+                navigation.navigate('Meu Perfil')
+                // console.log(response.data)
+            })
+            .catch((error) => {
+                Alert.alert('Erro', "Preencha todos os campos do formulário");
+            });
+        // navigation.navigate('Nova Postagem')
+        // if(response.status){
+        //     console.log("OK")
+        // }else{
+        //     console.log("ERR")
+        // }
     }
 
     return (

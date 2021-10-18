@@ -1,7 +1,7 @@
-export function signin(name, username) {
+export function signin(name, username, id) {
     return {
         type: 'SIGNIN',
-        payload: { name, username }
+        payload: { name, username, id}
     }
 }
 

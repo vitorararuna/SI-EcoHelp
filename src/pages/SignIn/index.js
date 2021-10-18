@@ -25,7 +25,8 @@ export default function SignIn({ navigation }) {
     if (response.data.length > 0 && response.data[0].username) {
       name_ = response.data[0].first_name
       username_ = response.data[0].username
-      dispatch(signin(name_, username_))
+      id_ = response.data[0].id
+      dispatch(signin(name_, username_, id_))
       navigation.navigate('Dashboard')
     }
     else {

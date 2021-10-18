@@ -86,7 +86,7 @@ export const Link = styled.Text`
 `;
 
 export const InputLink = styled(TextInput).attrs({
-    placeholder: "Link para encontrarmos o local em suas redes sociais",
+    placeholder: "(DDD) XXXX-XXXX",
     autoCorrect: false,
 })`
  

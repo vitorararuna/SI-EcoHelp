@@ -6,7 +6,7 @@ import { placeholder } from '@babel/types';
 export const Content = styled.View`
     /* position: absolute; */
     width: 400px;
-    height: 300px;
+    height: auto;
     align-self: center;
     background: #FCFCFC;
     border-radius: 5px;
@@ -28,7 +28,7 @@ export const UserInfos = styled.View`
 export const IconsContent = styled.View`
     flex-direction: row;
     margin-bottom: 5px;
-    left: 192px;
+    left: 230px;
 `;
 
 export const Name = styled.Text`
@@ -99,11 +99,10 @@ export const Text_ = styled.Text`
 export const Filter_ = styled.View`
     align-items: center;
     padding: 3px;
-    border: 3px #FFF2E2 solid;
     border-radius:15px;
     align-self: center;
-    background-color: #FFF2E2;
-    left: 170px;
+    left: 210px;
+    margin-left: 2%;
 `;
 
 

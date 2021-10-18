@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { TouchableOpacity, Text, StyleSheet, Alert } from "react-native";
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { SafeAreaView } from "react-native-safe-area-context";
+import api from "../../services/api";
 import { Content, Title, Descricao, Publicar, Infos, Name, Type, End, Desc, Link, InputName, InputType, InputEnd, InputDesc, InputLink } from "./styles";
 import Icon from 'react-native-vector-icons/Ionicons'
 import { useSelector } from "react-redux";
@@ -11,14 +12,36 @@ const Tab = createMaterialTopTabNavigator();
 export default function NovoLocal1({ navigation }) {
 
     const tipoLocal = useSelector(state => state.user.tipo_local);
+    const _user_ = useSelector(state => state.user);
     const [nome_local, setNome_local] = useState("")
     const [endereco, setEndereco] = useState("")
     const [descri, setDescri] = useState("")
-    const [link, setLink] = useState("")
+    const [telefone, setTelefone] = useState("")
+    const [_type_, setType] = useState("")
 
-    function publicar() {
-        console.log(tipoLocal, nome_local, endereco, descri, link)
+    async function publicar() {
+        await api.post('place/', {
+            name: nome_local,
+            description: descri,
+            type: _type_,
+            address: endereco,
+            telephone: telefone
+        })
+            .then((response) => {
+                navigation.navigate('Meu Perfil')
+                // console.log(response.data)
+            })
+            .catch((error) => {
+                Alert.alert('Erro', "Preencha todos os campos do formulário");
+            });
     }
+
+    useEffect(() => {
+        if (tipoLocal == "Ponto de Coleta") { setType('colect') }
+        if (tipoLocal == "Doações") { setType('commerce') }
+        if (tipoLocal == "Comércio") { setType('donations') }
+        if (tipoLocal == "Outros") { setType('other') }
+    }, [])
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -38,8 +61,8 @@ export default function NovoLocal1({ navigation }) {
                 <Descricao>DESCRIÇÃO</Descricao>
                 <Desc>Descreva o local</Desc>
                 <InputDesc value={descri} onChangeText={setDescri} />
-                <Link>Link para encontrar o local</Link>
-                <InputLink value={link} onChangeText={setLink} />
+                <Link>Telefone</Link>
+                <InputLink value={telefone} onChangeText={setTelefone} />
                 <TouchableOpacity onPress={() => publicar()}>
                     <Publicar><Text style={styles.text}>PUBLICAR</Text></Publicar>
                 </TouchableOpacity>

@@ -1,54 +1,19 @@
 import React, { useState } from "react";
-import { Button, KeyboardAvoidingView, TouchableOpacity, Text, StyleSheet, View, SafeAreaView } from "react-native";
+import { Button, KeyboardAvoidingView, TouchableOpacity, Text, StyleSheet, View, SafeAreaView, Alert } from "react-native";
 import { Content, Name, Title, Spam, Photo, UserContent, User, UserInfos, IconsContent, PostContent, InfosPostContent, Text_, Filter_, List_coments, IputComent, Coment, NewComent } from './styles'
 import Modal from "react-native-modal";
+import api from "../../services/api";
 import Coments from "../Coments";
 import Icon from "react-native-vector-icons/AntDesign"
 import Icon2 from "react-native-vector-icons/SimpleLineIcons"
 import Icon3 from "react-native-vector-icons/Fontisto"
 import vitin from '../../assets/vitin.jpeg'
+import { useSelector } from "react-redux";
 
-const DATA = [
-    {
-        id: '1',
-        nome: "@vitorararuna",
-        photo: vitin,
-        coment: "COmentário para esse post é que alsobasovubasouvhb  alsejcyasuy cesuybcaeuyc caieyiasuyev caiseuyvaieycvayt caeuyvciaysetcviyaset iasucvieystcvesiy aso ebaso uyec aosebouaycbas aseyc osauycv asuycvaseuycv oasuycvasoeuyc oasueycaoeucv",
-    },
-    {
-        id: '2',
-        nome: "@vitorararuna",
-        photo: vitin,
-        coment: "COmentário para esse post é que alsobasovubasouvhb  alsejcyasuy cesuybcaeuyc caieyiasuyev caiseuyvaieycvayt caeuyvciaysetcviyaset iasucvieystcvesiy aso ebaso uyec aosebouaycbas aseyc osauycv asuycvaseuycv oasuycvasoeuyc oasueycaoeucv",
-    },
-    {
-        id: '3',
-        nome: "@vitorararuna",
-        photo: vitin,
-        coment: "COmentário para esse post é que alsobasovubasouvhb  alsejcyasuy cesuybcaeuyc caieyiasuyev caiseuyvaieycvayt caeuyvciaysetcviyaset iasucvieystcvesiy aso ebaso uyec aosebouaycbas aseyc osauycv asuycvaseuycv oasuycvasoeuyc oasueycaoeucv",
-    },
-    {
-        id: '4',
-        nome: "@vitorararuna",
-        photo: vitin,
-        coment: "COmentário para esse post é que alsobasovubasouvhb  alsejcyasuy cesuybcaeuyc caieyiasuyev caiseuyvaieycvayt caeuyvciaysetcviyaset iasucvieystcvesiy aso ebaso uyec aosebouaycbas aseyc osauycv asuycvaseuycv oasuycvasoeuyc oasueycaoeucv",
-    },
-    {
-        id: '5',
-        nome: "@vitorararuna",
-        photo: vitin,
-        coment: "COmentário para esse post é que alsobasovubasouvhb  alsejcyasuy cesuybcaeuyc caieyiasuyev caiseuyvaieycvayt caeuyvciaysetcviyaset iasucvieystcvesiy aso ebaso uyec aosebouaycbas aseyc osauycv asuycvaseuycv oasuycvasoeuyc oasueycaoeucv",
-    },
-    {
-        id: '6',
-        nome: "@vitorararuna",
-        photo: vitin,
-        coment: "COmentário para esse post é que alsobasovubasouvhb  alsejcyasuy cesuybcaeuyc caieyiasuyev caiseuyvaieycvayt caeuyvciaysetcviyaset iasucvieystcvesiy aso ebaso uyec aosebouaycbas aseyc osauycv asuycvaseuycv oasuycvasoeuyc oasueycaoeucv",
-    },
-];
 
-export default function Publicacoes({ photo, name, user, title, spam, likes, coments }) {
+export default function Publicacoes({ id, photo, name, user, title, spam, likes, coments, type }) {
 
+    const _user_ = useSelector(state => state.user);
     const [isModalVisible, setModalVisible] = useState(false);
     const [coment, setComent] = useState("")
 
@@ -56,10 +21,22 @@ export default function Publicacoes({ photo, name, user, title, spam, likes, com
         setModalVisible(!isModalVisible);
     };
 
-    function publicar() {
-        console.log(coment)
+    async function publicar() {
+        console.log(_user_.user_id, coment, id)
+        await api.post('comment/', {
+            user: _user_.user_id,
+            body: coment,
+            publication: id
+        })
+            .then((response) => {
+                // navigation.navigate('Comunidade')
+                console.log(response.data)
+            })
+            .catch((error) => {
+                Alert.alert('Erro', "Comentário Inválido");
+            });
     }
-    
+
     return (
         <KeyboardAvoidingView>
             <Content>
@@ -79,24 +56,27 @@ export default function Publicacoes({ photo, name, user, title, spam, likes, com
                     <Spam>{spam}</Spam>
                 </PostContent>
                 <InfosPostContent>
-                    <TouchableOpacity>
-                        <Text_><Icon name="like2" size={23} />{likes}</Text_>
+                    <TouchableOpacity onPress={() => console.log(coments)}>
+                        <Text_><Icon name="like2" size={23} />{likes.length}</Text_>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={toggleModal}>
-                        <Text_><Icon3 name="comment" size={23} />{coments}</Text_>
+                        <Text_><Icon3 name="comment" size={23} />{coments.length}</Text_>
                     </TouchableOpacity>
-                    <Text_><Icon name="sharealt" size={23} /></Text_>
-                    <Filter_><Text>pergunta</Text></Filter_>
+                    {type == "hint" && <Filter_ style={styles.dica}><Text>dica</Text></Filter_>}
+                    {type == "discussion" && <Filter_ style={styles.discussao}><Text>discussão</Text></Filter_>}
+                    {type == "notícia" && <Filter_ style={styles.noticia}><Text>notícia</Text></Filter_>}
+                    {type == "question" && <Filter_ style={styles.pergunta}><Text>pergunta</Text></Filter_>}
+
                 </InfosPostContent>
             </Content>
             <Modal isVisible={isModalVisible}>
                 <View style={{ flex: 1 }}>
                     <SafeAreaView style={{ flex: 1 }}>
                         <List_coments
-                            data={DATA}
+                            data={coments}
                             keyExtractor={(item) => String(item.id)}
                             renderItem={({ item }) => (
-                                <Coments name={item.nome} photo={item.photo} coment={item.coment} />
+                                <Coments name={item.user.first_name} photo={vitin} coment={item.body} />
                             )}
                         />
                         <NewComent>
@@ -122,8 +102,29 @@ const styles = StyleSheet.create({
         color: "#2EAE01",
         fontWeight: "bold"
     },
-    coment: {
-        // marginBottom: 15,
+    dica: {
+        borderWidth: 3,
+        borderColor: "#E7FEE1",
+        backgroundColor: "#E7FEE1",
+        fontWeight: "bold"
+    },
+    discussao: {
+        borderWidth: 3,
+        borderColor: "#F6E1FE",
+        backgroundColor: "#F6E1FE",
+        fontWeight: "bold"
+    },
+    noticia: {
+        borderWidth: 3,
+        borderColor: "#E1ECFE",
+        backgroundColor: "#E1ECFE",
+        fontWeight: "bold"
+    },
+    pergunta: {
+        borderWidth: 3,
+        borderColor: "#FFF2E2",
+        backgroundColor: "#FFF2E2",
+        fontWeight: "bold"
     }
 });
 

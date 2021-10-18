@@ -10,13 +10,11 @@ export const UserName = styled.Text`
     left: 210px;
     top: 115px;
     margin-top:5px;
-    font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 22px;
     line-height: 22px;
-
-    color: #000000;
+    color: #2EAE01;
 `;
 
 export const UserLogin = styled.Text`

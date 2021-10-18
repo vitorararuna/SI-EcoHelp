@@ -6,7 +6,7 @@ import { placeholder } from '@babel/types';
 export const Content = styled.View`
     /* position: absolute; */
     width: 400px;
-    height: 130px;
+    height: auto;
     align-self: center;
     background: #FCFCFC;
     border-radius: 5px;
@@ -53,6 +53,7 @@ export const Tipo = styled.Text`
 
 export const PostContent = styled.View`
     margin-top: 25px;
+    height: auto;
     /* flex-direction: row;
     margin-bottom: 5px;
     left: 200px; */
@@ -74,7 +75,7 @@ export const Spam = styled.Text`
     font-weight: normal;
     font-size: 13px;
     line-height: 16px;
-    color: #2173ea;
+    color: green;
 `;
 
 export const IconContent = styled.View`

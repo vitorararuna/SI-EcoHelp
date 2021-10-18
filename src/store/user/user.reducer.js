@@ -5,6 +5,7 @@ const INITIAL_STATE = {
     signed: false,
     username: "",
     name: "",
+    user_id: 500,
     tipo_local: "Ponto de Coleta",
     icon_local: ""
 }
@@ -16,6 +17,7 @@ export default function user(state = INITIAL_STATE, action) {
                 draft.signed = true;
                 draft.name = action.payload.name;
                 draft.username = action.payload.username;
+                draft.user_id = action.payload.id;
                 break;
             }
             case 'SETLOCAL': {
@@ -27,6 +29,7 @@ export default function user(state = INITIAL_STATE, action) {
                 draft.signed = false;
                 draft.name = "";
                 draft.username = "";
+                draft.user_id = 500;
                 break;
             }
             default:
