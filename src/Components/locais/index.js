@@ -7,18 +7,18 @@ import Icon3 from "react-native-vector-icons/Fontisto"
 import Icon_ from 'react-native-vector-icons/FontAwesome'
 
 
-export default function Locais_({ navigation }) {
+export default function Locais_({ name, type, endereco }) {
     return (
         <KeyboardAvoidingView>
             <Content>
                 <UserContent>
-                    {/* <Photo source={{ uri: 'https://avatars.githubusercontent.com/u/49912005?v=4' }} /> */}
                     <IconContent>
+                        {/* fazer verificação do type para alterar icone */}
                         <Icon_ name="recycle" size={25} style={styles.icon} />
                     </IconContent>
                     <UserInfos>
-                        <Name>Inspira Verde</Name>
-                        <Tipo>produtos sustentáveis</Tipo>
+                        <Name>{name}</Name>
+                        <Tipo>{type}</Tipo>
                     </UserInfos>
                     <IconsContent>
                         <Icon name="tago" size={23} />
@@ -27,7 +27,7 @@ export default function Locais_({ navigation }) {
                 </UserContent>
                 <PostContent>
                     <Title>Endereço:</Title>
-                    <Spam>BL D - loja 47 - Asa Norte, Brasília - DF, 70842-540</Spam>
+                    <Spam>{endereco}</Spam>
                 </PostContent>
             </Content>
         </KeyboardAvoidingView>

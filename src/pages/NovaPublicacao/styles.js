@@ -51,38 +51,39 @@ export const TypeOptions = styled.View`
 `;
 
 export const Dica = styled.Text`
+    /* ${props => props.set ? "palevioletred" : "white"}; */
     margin: 18px 20px 0px 0px;
     background-color: #E7FEE1;
-    padding: 7px;
+    padding: ${props => props.set ? "12px" : "7px"};
     border-radius: 15px;
-    font-weight: bold;
+    font-weight: ${props => props.set ? "bold" : "normal"};
     font-size: 15px;
 `;
 
 export const Discussao = styled.Text`
     margin: 18px 20px 0px 0px;
     background-color: #F6E1FE;
-    padding: 7px;
+    padding: ${props => props.set ? "12px" : "7px"};;
     border-radius: 15px;
-    font-weight: bold;
+    font-weight: ${props => props.set ? "bold" : "normal"};
     font-size: 15px;
 `;
 
 export const Noticia = styled.Text`
     margin: 18px 20px 0px 0px;
     background-color: #E1ECFE;
-    padding: 7px;
+    padding: ${props => props.set ? "12px" : "7px"};;
     border-radius: 15px;
-    font-weight: bold;
+    font-weight: ${props => props.set ? "bold" : "normal"};
     font-size: 15px;
 `;
 
 export const Pergunta = styled.Text`
     margin: 18px 20px 0px 0px;
     background-color: #FFF2E2;
-    padding: 7px;
+    padding: ${props => props.set ? "12px" : "7px"};;
     border-radius: 15px;
-    font-weight: bold;
+    font-weight: ${props => props.set ? "bold" : "normal"};
     font-size: 15px;
 `;
 

@@ -2,8 +2,6 @@ import React from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createAppContainer } from "react-navigation";
-
 
 import SignIn from './src/pages/SignIn'
 import SignUp from './src/pages/SignUp'
@@ -22,17 +20,17 @@ const Dashboard = () => {
     return (
         <Drawer.Navigator initialRouteName="Meu Perfil">
             <Drawer.Screen name="Meu Perfil" component={User} />
-            <Drawer.Screen name="Nova Postagem" component={NovaPostagem} />
             <Drawer.Screen name="Comunidade" component={Comunidade} />
             <Drawer.Screen name="Locais" component={Locais} />
+            <Drawer.Screen name="Nova Postagem" component={NovaPostagem} />
         </Drawer.Navigator>
     )
 }
 
-const Initial = isSigned => {
+const Initial = ({ isSigned = false }) => {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="SignIn">
+            <Stack.Navigator initialRouteName={isSigned ? 'Dashboard' : 'SignIn'}>
                 <Stack.Screen options={{ headerShown: false }} name="SignIn" component={SignIn} />
                 <Stack.Screen options={{ headerShown: false }} name="SignUp" component={SignUp} />
                 <Stack.Screen options={{ headerShown: false }} name="Novo Local0" component={NovoLocal0} />
@@ -43,13 +41,6 @@ const Initial = isSigned => {
         </NavigationContainer>
     )
 }
-
-// export default (isSigned = false) =>
-//     createAppContainer(
-//         {
-//             Sign: Initial(isSigned),
-//         },
-//     );
 
 
 export default Initial;

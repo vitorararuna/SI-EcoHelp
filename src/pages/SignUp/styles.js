@@ -88,10 +88,9 @@ export const Userinput = styled(TextInput).attrs({
     /* border: 1px black solid; */
 `;
 
-export const Passinput = styled(TextInput).attrs({
-    placeholder: "Senha",
+export const Nameinput = styled(TextInput).attrs({
+    placeholder: "Nome",
     autoCorrect: false,
-    secureTextEntry: true,
 })`
     margin-top: 25px;
     align-self: center;
@@ -101,8 +100,8 @@ export const Passinput = styled(TextInput).attrs({
     /* border: 1px black solid; */
 `;
 
-export const  Confirminput = styled(TextInput).attrs({
-    placeholder: "Confirmar senha Senha",
+export const Passinput = styled(TextInput).attrs({
+    placeholder: "Senha",
     autoCorrect: false,
     secureTextEntry: true,
 })`

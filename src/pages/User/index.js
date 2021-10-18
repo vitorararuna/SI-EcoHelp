@@ -1,22 +1,57 @@
-import React from "react";
-import { KeyboardAvoidingView, View, ImageBackground, Image, TouchableOpacity, Text, StyleSheet, } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, ImageBackground, StyleSheet, Text, } from "react-native";
 import fundo from '../../assets/fundo.jpeg'
-import { Photo, TabContainer, UserContent, UserLogin, UserName } from './styles'
+import { Photo, UserLogin, UserName } from './styles'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Publish from "../Publish_";
 import Saves from "../Saves";
-import Icon from "react-native-vector-icons/FontAwesome";
-import { auto } from "async";
+import api from '../../services/api';
+import vitin from '../../assets/vitin.jpeg';
+import Icon from 'react-native-vector-icons/AntDesign'
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { signout } from "../../store/user/user.actions";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const Tab = createMaterialTopTabNavigator();
 
+const user_infos = {
+    nome: 'Vitor Araruna',
+    user: '@vitorararuna',
+    foto: vitin
+}
+
 export default function User({ navigation }) {
+
+    const dispatch = useDispatch()
+    const [userInfos, setUserIfos] = useState({})
+
+    async function loadUserInfos() {
+        // const response = await api.get('user');
+        // setUserIfos(response.data);
+        setUserIfos(user_infos)
+    }
+
+    async function _signout_() {
+        // const response = await api.get('user');
+        // setUserIfos(response.data);
+        dispatch(signout())
+        navigation.navigate('SignIn')
+    }
+
+    useEffect(() => {
+        loadUserInfos()
+    }, [])
+
     return (
         <View style={{ flex: 1 }}>
             <ImageBackground source={fundo} resizeMode="cover" style={styles.image}>
-                <Photo source={{ uri: 'https://avatars.githubusercontent.com/u/49912005?v=4' }} />
-                <UserName>Vitor Araruna</UserName>
-                <UserLogin>@vitor_araruna</UserLogin>
+                <Photo source={userInfos.foto} />
+                <UserName>{userInfos.nome} </UserName>
+                <UserLogin>{userInfos.user}</UserLogin>
+                <TouchableOpacity onPress={() => _signout_()}>
+                    <Icon name="logout" size={30} style={styles.icon} />
+                </TouchableOpacity>
             </ImageBackground>
             <Tab.Navigator
                 initialRouteName="Feed"
@@ -52,6 +87,12 @@ const styles = StyleSheet.create({
     tab: {
         // position: "relative",
         flex: 3,
+    },
+    icon: {
+        // flex: 1,
+        color: "#fff",
+        left: 390,
+        marginBottom: 25,
     }
 
 });

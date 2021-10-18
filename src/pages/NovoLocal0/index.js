@@ -1,11 +1,23 @@
-import React, { cloneElement } from "react";
+import React, { useState } from "react";
 import { KeyboardAvoidingView, View, Image, TouchableOpacity, Text, StyleSheet } from "react-native";
 import { ceil } from "react-native-reanimated";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Icon2 from "react-native-vector-icons/MaterialIcons";
 import Icon3 from "react-native-vector-icons/Ionicons";
+import { useDispatch, useSelector } from "react-redux";
+import { setlocal } from '../../store/user/user.actions'
+
 
 export default function NovoLocal0({ navigation }) {
+
+    const dispatch = useDispatch()
+
+    function _setLocal_(loc, icon) {
+        dispatch(setlocal(loc, icon))
+        navigation.navigate('Novo Local1')
+    }
+
+
     return (
         <KeyboardAvoidingView style={styles.background}>
             <TouchableOpacity onPress={() => navigation.navigate('Nova Postagem')}>
@@ -13,22 +25,22 @@ export default function NovoLocal0({ navigation }) {
             </TouchableOpacity>
             <Text style={styles.text1}>QUAL O TIPO DO LOCAL ?</Text>
             <View style={styles.view1}>
-                <TouchableOpacity activeOpacity={.7} onPress={() => navigation.navigate('Novo Local1')}>
+                <TouchableOpacity activeOpacity={.7} onPress={() => _setLocal_("Ponto de Coleta", "recycle")}>
                     <Text style={[styles.text2, { backgroundColor: "#6bb42d" }]} >
                         <Icon style={styles.icon} name="recycle" size={25} />  PONTO DE COLETA
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity activeOpacity={.7} onPress={() => navigation.navigate('Novo Local1')} >
+                <TouchableOpacity activeOpacity={.7} onPress={() => _setLocal_("Doações", "handshake-o")} >
                     <Text style={[styles.text2, { backgroundColor: "#63DBC0" }]} >
                         <Icon style={styles.icon} name="handshake-o" size={25} />  DOAÇÕES
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity activeOpacity={.7} onPress={() => navigation.navigate('Novo Local1')}>
+                <TouchableOpacity activeOpacity={.7} onPress={() => _setLocal_("Comércio", "store")}>
                     <Text style={[styles.text2, { backgroundColor: "#E3F84D" }]} >
                         <Icon2 style={styles.icon} name="store" size={30} />  COMÉRCIO
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity activeOpacity={.7} onPress={() => navigation.navigate('Novo Local1')}>
+                <TouchableOpacity activeOpacity={.7} onPress={() => _setLocal_("Outros", "square")}>
                     <Text style={[styles.text2, { backgroundColor: "#FD9E2E" }]} >
                         <Icon style={styles.icon} name="square" size={25} />  OUTROS
                     </Text>

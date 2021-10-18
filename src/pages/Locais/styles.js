@@ -23,4 +23,10 @@ export const Search = styled(TextInput).attrs({
     border-radius: 22px;
 `;
 
+export const List = styled.FlatList.attrs({
+    showsVerticalScrollIndicator: false,     // não mostrar inicador de scrool
+    contentContainerStyle: { flexGrow: 1}, // estilo relacionado apenas ao conteúdo da lista
+})`
+
+  `;
 

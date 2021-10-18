@@ -107,3 +107,32 @@ export const Filter_ = styled.View`
 `;
 
 
+export const List_coments = styled.FlatList.attrs({
+    showsVerticalScrollIndicator: false,     // não mostrar inicador de scrool
+    contentContainerStyle: { flexGrow: 1 }, // estilo relacionado apenas ao conteúdo da lista
+})`
+
+  `;
+
+export const IputComent = styled(TextInput).attrs({
+    placeholder: "escreva aqui",
+    multiline: true,
+    numberOfLines: 2,
+    autoCorrect: false,
+})`
+ margin-bottom: 100px;
+`;
+
+export const NewComent = styled.View`
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: white;
+    height: 225px;
+`;
+
+export const Coment = styled.Text`
+    font-weight: bold;
+    margin-top: 15px;
+    margin-left: 5px;
+    font-size: 20px;
+`;
