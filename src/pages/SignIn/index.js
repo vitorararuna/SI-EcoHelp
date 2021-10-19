@@ -23,6 +23,7 @@ export default function SignIn({ navigation }) {
       }
     });
     if (response.data.length > 0 && response.data[0].username) {
+      console
       name_ = response.data[0].first_name
       username_ = response.data[0].username
       id_ = response.data[0].id

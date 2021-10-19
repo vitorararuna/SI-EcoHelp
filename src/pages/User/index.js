@@ -4,9 +4,8 @@ import fundo from '../../assets/fundo.jpeg'
 import { Photo, UserLogin, UserName } from './styles'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Publish from "../Publish_";
-import Saves from "../Saves";
 import api from '../../services/api';
-import vitin from '../../assets/vitin.jpeg';
+import user_image from '../../assets/user_image.jpeg';
 import Icon from 'react-native-vector-icons/AntDesign'
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { signout } from "../../store/user/user.actions";
@@ -32,7 +31,7 @@ export default function User({ navigation }) {
         _user_infos_ = {
             nome: _user_.name,
             username: _user_.username,
-            foto: vitin
+            foto: user_image
         }
         await setUserIfos(_user_infos_)
     }

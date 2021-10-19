@@ -12,6 +12,7 @@ import User from './src/pages/User'
 import NovaPostagem from './src/pages/NovaPostagem'
 import Comunidade from './src/pages/Comunidade'
 import Locais from './src/pages/Locais'
+import Publicacoes from "./src/Components/publicações";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -37,6 +38,7 @@ const Initial = ({ isSigned = false }) => {
                 <Stack.Screen options={{ headerShown: false }} name="Novo Local1" component={NovoLocal1} />
                 <Stack.Screen options={{ headerShown: false }} name="Nova Publicacao" component={NovaPublicacao} />
                 <Stack.Screen options={{ headerShown: false }} name="Dashboard" component={Dashboard} />
+                <Stack.Screen options={{ headerShown: false }} name="Publicacoes" component={Publicacoes} />
             </Stack.Navigator>
         </NavigationContainer>
     )

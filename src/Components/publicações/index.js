@@ -7,12 +7,14 @@ import Coments from "../Coments";
 import Icon from "react-native-vector-icons/AntDesign"
 import Icon2 from "react-native-vector-icons/SimpleLineIcons"
 import Icon3 from "react-native-vector-icons/Fontisto"
-import vitin from '../../assets/vitin.jpeg'
+import vitin from '../../assets/user_image.jpeg'
 import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
 
 export default function Publicacoes({ id, photo, name, user, title, spam, likes, coments, type }) {
 
+    const navigation = useNavigation()
     const _user_ = useSelector(state => state.user);
     const [isModalVisible, setModalVisible] = useState(false);
     const [coment, setComent] = useState("")
@@ -29,10 +31,13 @@ export default function Publicacoes({ id, photo, name, user, title, spam, likes,
             publication: id
         })
             .then((response) => {
-                // navigation.navigate('Comunidade')
                 console.log(response.data)
+                setModalVisible(!isModalVisible)
+                navigation.navigate("Nova Postagem")
+
             })
             .catch((error) => {
+                console.log(error)
                 Alert.alert('Erro', "Comentário Inválido");
             });
     }
@@ -56,9 +61,9 @@ export default function Publicacoes({ id, photo, name, user, title, spam, likes,
                     <Spam>{spam}</Spam>
                 </PostContent>
                 <InfosPostContent>
-                    <TouchableOpacity onPress={() => console.log(coments)}>
+                    {/* <TouchableOpacity onPress={() => likePublish()}>
                         <Text_><Icon name="like2" size={23} />{likes.length}</Text_>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <TouchableOpacity onPress={toggleModal}>
                         <Text_><Icon3 name="comment" size={23} />{coments.length}</Text_>
                     </TouchableOpacity>

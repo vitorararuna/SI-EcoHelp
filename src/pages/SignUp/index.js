@@ -19,6 +19,7 @@ export default function SignUp({ navigation }) {
     const [pass, setPass] = useState("")
 
     async function handleSubmit() {
+        console.log(name, user, pass)
         await api.post('user/', {
             first_name: name,
             username: user,

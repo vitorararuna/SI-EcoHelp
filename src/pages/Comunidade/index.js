@@ -7,7 +7,7 @@ import Modal from "react-native-modal";
 import Icon from "react-native-vector-icons/AntDesign";
 import Icon2 from "react-native-vector-icons/Ionicons";
 import { SafeAreaView } from "react-native-safe-area-context";
-import vitin from '../../assets/vitin.jpeg';
+import vitin from '../../assets/user_image.jpeg';
 import Publicacoes from "../../Components/publicações";
 
 export default function Comunidade({ navigation }) {
